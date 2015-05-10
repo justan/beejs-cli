@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>%Com 使用示例</title>
+  <script src="build/app.js"></script>
+</head>
+<body>
+  <p>为了不和将来 HTML5 的新标签相冲突, 建议自定义标签总是带上前缀</p>
+  <p>可以直接初始化单个组件</p>
+  <x-%com id='%com'></x-%com>
+
+  <div id="container">
+    <p>如果初始化的是容器, 组件的初始数据需要透过自定义标签的属性完成</p>
+    <p><code>b-with</code> 及其他属性, 可以将容器实例的数据传给组件实例</p>
+    <x-%com b-with="$data" keyword='三体'></x-%com>
+    <button b-on="{click: showValue}">getValue</button>
+  </div>
+</body>
+</html>

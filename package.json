@@ -1,0 +1,23 @@
+{
+  "name": "bee-cli",
+  "version": "0.0.0",
+  "description": "beejs 辅助工具",
+  "main": "index.js",
+  "bin": {
+    "bee": "bin/cmd.js"
+  },
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+  "keywords": [
+    "beejs", "cli"
+  ],
+  "author": "justan",
+  "license": "MIT",
+  "dependencies": {
+    "es6-promise": "^2.1.1",
+    "minimist": "^1.1.1",
+    "ncp": "^2.0.0"
+  },
+  "devDependencies": {}
+}
