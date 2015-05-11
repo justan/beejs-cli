@@ -67,6 +67,7 @@ function configPkg(path, name, isNewDir) {
         "del": "^1.1.1",
         'gulp-streamify': '^0.0.5',
         "gulp-rename": "^1.2.2",
+		"through2": "^0.6.5",
         'vinyl-source-stream': '^1.1.0'
       },
       browserify: {
