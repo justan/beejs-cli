@@ -1,9 +1,8 @@
 //Beejs 组件模板
 
-
-//Beejs 通过 npm 安装, 用 require 依赖, 就像在使用 node 程序!
-//当然, 如果 bee.js 是通过全局模式引入的话, 就可以不必在这里依赖了
-var Bee = require('beejs')
+//默认的 Bee 会是一个全局变量.
+//如果你想使用 node 的方式, 你也可以直接在这里 require('beejs'), 但是在这么做之前请移除 package.json 中的 browser.beejs 配置项
+//var Bee = require('beejs')
 
 //fs 模块只能在 node 环境中使用.
 //但是由于我们在 package.json 中定义了 `browserify.transform` 使用 `brfs`
@@ -24,12 +23,12 @@ var %Com = Bee.extend({
   }
 });
 
-//将标签 `x-%com` 同 %Com 建立关联. 类似 `img` 标签和 `Image` 构造函数的关系
+//将标签 `%pf%tag` 同 %Com 建立关联. 类似 `img` 标签和 `Image` 构造函数的关系
 //为了不和将来 HTML5 的新标签相冲突, 建议自定义标签总是带上前缀
-Bee.tag('x-%com', %Com)
+Bee.tag('%pf%tag', %Com)
 
 //上面两步可以合写成:
-// var %Com = Bee.tag('x-%com', {
+// var %Com = Bee.tag('%pf%tag', {
 //   $tpl: tpl,
 //   $data: {},
 //

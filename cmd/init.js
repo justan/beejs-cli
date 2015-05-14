@@ -1,9 +1,12 @@
 var pt = require('path')
 var fs = require('fs')
+
 var ncp = require('ncp').ncp
+var assign = require('object-assign')
 
 var getInput = require('../lib/getInput')
 var putName = require('../lib/putName')
+var defaultsPkgJson = require('../lib/package.json.js')
 
 var inputTips = [
   { tip: '请输入组件名称', field: 'name' },
@@ -40,46 +43,23 @@ module.exports = function(opts) {
     getInput('该目录不为空, 继续执行可能会覆盖现有文件, 是否继续 (yes)?').then(function(r) {
       r = r ? r.toLowerCase() : 'yes'
       if(r === 'yes' || r === 'y') {
-        configPkg(path, name, isNewDir)
+        configPkg(path, name, isNewDir, opts)
       }
     })
   }else{
-    configPkg(path, name, isNewDir)
+    configPkg(path, name, isNewDir, opts)
   }
 }
 
 //配置 package.json
-function configPkg(path, name, isNewDir) {
-  var defaults = {
-      name: '',
-      version: '0.0.0',
-      license: 'MIT',
-      main: 'index.js',
-      description: '',
-      author: '',
-      dependencies: {
-        beejs: '~0.1.1'
-      },
-      devDependencies: {
-        browserify: '^10.0.0',
-        gulp: '^3.8.11',
-        brfs: '^1.4.0',
-        "del": "^1.1.1",
-        'gulp-streamify': '^0.0.5',
-        "gulp-rename": "^1.2.2",
-		"through2": "^0.6.5",
-        'vinyl-source-stream': '^1.1.0'
-      },
-      browserify: {
-        transform: ['brfs']
-      }
-    }
-  var pkg = defaults
+function configPkg(path, name, isNewDir, opts) {
+  var pkg
 
   try{
+    //优先使用现有 package.json
     pkg = JSON.parse(fs.readFileSync(pt.join(path, 'package.json'), 'utf8'))
   }catch(e){
-    pkg = defaults;
+    pkg = assign({}, defaultsPkgJson)
   }
 
   pkg.name = pkg.name || name
@@ -96,22 +76,22 @@ function configPkg(path, name, isNewDir) {
 
   }, Promise.resolve()).then(function(p) {
     console.log(JSON.stringify(p, null, 2))
-    copy(path, p, isNewDir)
+    copy(path, p, isNewDir, opts.prefix)
   })
 }
 
-function copy(path, pkg, isNewDir) {
+function copy(path, pkg, isNewDir, prefix) {
   if(isNewDir) {
     fs.mkdirSync(path)
   }
   ncp(pt.join(__dirname, '../templates/'), path, {
-    transform: putName(pkg.name)
+    transform: putName(pkg.name, prefix)
   }, function(err) {
     if(err) {
       console.error(err)
     }else{
       fs.writeFileSync(pt.join(path, 'package.json'), JSON.stringify(pkg, null, 2), 'utf8')
-      console.log('完成! 请输入: `npm install` 安装好依赖然后开始吧。')
+      console.log('完成! 运行: `cd %s && npm install` 安装好依赖然后开始吧。', pkg.name)
     }
   })
 }

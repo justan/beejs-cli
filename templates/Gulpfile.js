@@ -6,7 +6,7 @@ var v_source = require('vinyl-source-stream')
 var del = require('del')
 var rename = require('gulp-rename')
 
-
+//构建 examples js
 gulp.task('build', function () {
   //var b = browserify({debug: true})//开启 sourcemap
   var b = browserify()
@@ -19,7 +19,7 @@ gulp.task('build', function () {
 })
 
 gulp.task('watch', function () {
-  gulp.watch(['index.js', 'src/*/*.js'], ['build'])
+  gulp.watch(['index.js', 'examples/*.js', 'templates/*', 'src/*.js'], ['build'])
 })
 
 gulp.task('clean', function () {

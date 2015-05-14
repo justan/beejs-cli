@@ -13,16 +13,16 @@ cd beejs-%com && npm install
 
 Usage
 ---
-1. 在 HTML 中使用自定义标签 `x-%com` 来引用该组件
+1. 在 HTML 中使用自定义标签 `%pf%tag` 来引用该组件
 
   ```html
-  <x-%com id="%com"></x-%com>
+  <%pf%tag id="%com"></%pf%tag>
   ```
 
 2. 在 js 中初始化
 
   ```js
-  Bee.mount('%com'); //初始化可以针对单个组件本身
+  var %com = Bee.mount('%com'); //初始化可以针对单个组件本身
 
   Bee.mount(document.body); //也可以针对某个容器进行
   ```
@@ -38,8 +38,11 @@ API
 
 Build
 ---
-查看 examples 中的示例请先运行 `gulp build`
+一般来说, 组件自身是不需要构建的.
 
+但是你仍然可以运行 `gulp build` 来构建 examples 中的示例 js 代码.
+
+运行 `gulp` 会自动监控, 组件 js 和示例 js 的变化, 并实时构建.
 
 License
 ---

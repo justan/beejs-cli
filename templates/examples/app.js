@@ -1,4 +1,4 @@
-var Bee = require('beejs')
+//加载需要的组件
 var Compnent = require('../')
 
 window.onload = function() {
@@ -18,6 +18,10 @@ window.onload = function() {
     }
   });
 
+  document.getElementById('get%ComValue').onclick = function() {
+    alert(bee.getValue());
+  }
+
   //也可以通过 dom 获取 bee 示例
   //document.querySelectorAll('[data-role=%com]')[0].bee === bee; // true
 
@@ -28,6 +32,7 @@ window.onload = function() {
       list: list
     },
     showValue: function() {
+      //获取组件的 beejs 实例
       var x_%com = this.$el.querySelector('[data-role=%com]').bee;
       alert(x_%com.getValue())
     }

@@ -8,7 +8,8 @@ require('es6-promise').polyfill()
 var argv = require('minimist')(process.argv.slice(2), {
   alias: {
     help: ['h'],
-    version: ['v']
+    version: ['v'],
+    prefix: ['p']
   }
 })
 
