@@ -21,7 +21,8 @@ module.exports = function(opts, e) {
         case 'init':
           tips = [
             "\n创建一个 beejs 组件, 指定了组件名后还会创建同名目录\n",
-            "\n用法: bee init [<组件名>]\n"
+            "\n用法: bee init [<组件名>]\n",
+            "\n  --prefix -p 自定义标签前缀" 
           ]
           break;
         case 'help':
