@@ -17,7 +17,7 @@ var inputTips = [
 
 
 module.exports = function(opts) {
-  var name = opts._[1]
+  var name = opts._[1] + ''
   var path, isNewDir
   var empty = true
 

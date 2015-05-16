@@ -13,16 +13,19 @@ var argv = require('minimist')(process.argv.slice(2), {
   }
 })
 
-var cmd = argv._[0]
+var cmd = argv._[0] + ''
 
 if(argv.version) {
- console.log(JSON.parse(fs.readFileSync(path.join(__dirname, '../package.json'))).version)
+  console.log(JSON.parse(fs.readFileSync(path.join(__dirname, '../package.json'))).version)
 }else if(!cmd || cmd === 'help' || argv.help) {
-  help(argv)
+  if(cmd === 'help') {
+    cmd = argv._[1]
+  }
+  help(null, cmd, argv)
 } else{
   try{
     require(path.join('../cmd', cmd))(argv)
   }catch(e) {
-    help(argv, e)
+    help(e, cmd, argv)
   }
 }
