@@ -17,7 +17,7 @@ var inputTips = [
 
 
 module.exports = function(opts) {
-  var name = opts._[1] + ''
+  var name = opts._[1]
   var path, isNewDir
   var empty = true
 
@@ -28,6 +28,8 @@ module.exports = function(opts) {
     isNewDir = true
     path = name
   }
+
+  name += ''
 
   path = pt.join(process.cwd(), path)
 
