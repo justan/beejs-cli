@@ -5,13 +5,9 @@ Beejs 示例组件 %Com
 
 Installation
 ---
-你可以将组件发布至 npm. 使用的时候就可以直接:
-```bash
-npm install beejs-%com
-cd beejs-%com && npm install
-```
+1. %Com 是所有 commonJS 模块系统. 你可以在代码中使用 `require` 引入依赖, 然后使用 [browserify] 编译使用.
 
-传统 script 标签引入:
+2. 传统 script 标签引入:
 ```html
 <script src="./build/%com.js"></script>
 ```
@@ -30,7 +26,7 @@ Usage
 
   ```js
   var %com = Bee.mount('%com', {
-    //这里传入初始值
+    //这里传入初始参数
   }); //初始化可以针对单个组件本身
 
   Bee.mount(document.body); //也可以针对某个容器进行
@@ -44,7 +40,7 @@ Usage
 var %Com = Bee.components['%pf%tag'];
 
 var %com = new %Com({
-  //初始值在这里
+  //初始参数在这里
 })
 ```
 
@@ -55,11 +51,21 @@ var %com = new %Com({
 
 API
 ---
-%com.getValue
+### 初始参数
+```js
+{
+  $data: {} //默认数据
+}
+```
+这里所有传入的参数都将合并至组件实例 `%com` 中, 可以直接访问.
+
+### %com.getValue
+
+这里编写接口使用方法
 
 Build
 ---
-运行 `gulp build` 来构建独立版本的组件 js 文件.
+运行 `gulp build` 来构建组件 js 文件.
 
 运行 `gulp` 会自动监控, 组件 js 和示例 js 的变化, 并实时构建.
 
@@ -69,3 +75,4 @@ MIT
 
 
 [beejs]: https://github.com/CFETeam/bee.js
+[browserify]: http://browserify.org
