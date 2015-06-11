@@ -24,18 +24,7 @@ var %Com = Bee.extend({
 });
 
 //将标签 `%pf%tag` 同 %Com 建立关联. 类似 `img` 标签和 `Image` 构造函数的关系
-//为了不和将来 HTML5 的新标签相冲突, 建议自定义标签总是带上前缀
 Bee.tag('%pf%tag', %Com)
-
-//上面两步可以合写成:
-// var %Com = Bee.tag('%pf%tag', {
-//   $tpl: tpl,
-//   $data: {},
-//
-//   getValue: function() {
-//     return this.$get('keyword');
-//   }
-// })
 
 
 module.exports = %Com;

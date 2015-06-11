@@ -5,9 +5,10 @@ Beejs 示例组件 %Com
 
 Installation
 ---
-1. %Com 是所有 commonJS 模块系统. 你可以在代码中使用 `require` 引入依赖, 然后使用 [browserify] 编译使用.
+两种方式:
+1. 通过 commonJS 或其他模块系统引入
 
-2. 传统 script 标签引入:
+2. 传统的 script 标签引入
 ```html
 <script src="./build/%com.js"></script>
 ```
@@ -75,4 +76,3 @@ MIT
 
 
 [beejs]: https://github.com/CFETeam/bee.js
-[browserify]: http://browserify.org
