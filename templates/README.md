@@ -38,7 +38,7 @@ Usage
 第二种用法是直接使用组件构造函数:
 
 ```js
-var %Com = Bee.components['%pf%tag'];
+var %Com = Bee.getComponent('%pf%tag');
 
 var %com = new %Com({
   //初始参数在这里

@@ -1,30 +1,26 @@
 //Beejs 组件模板
 
-//默认的 Bee 会是一个全局变量.
-//如果你想使用 node 的方式, 你也可以直接在这里 require('beejs'), 但是在这么做之前请移除 package.json 中的 browser.beejs 配置项
-//var Bee = require('beejs')
-
-//fs 模块只能在 node 环境中使用.
-//但是由于我们在 package.json 中定义了 `browserify.transform` 使用 `brfs`
-//browserify 构建的时候会将内容内嵌到 js 文件中, 从而兼容 node 和浏览器
+//使用 `brfs`
 var fs = require('fs')
 var tpl = fs.readFileSync(__dirname + '/templates/index.html', 'utf8')
+var Bee = require('beejs')
 
 //%Com 是继承 Bee 的构造函数
 var %Com = Bee.extend({
   $tpl: tpl,
 
-  //组件默认数据
-  $data: {},
-
   //组件的方法定义
   getValue: function() {
     return this.$get('keyword');
   }
+}, {
+  //组件默认数据
+  defaults: {}
 });
 
 //将标签 `%pf%tag` 同 %Com 建立关联. 类似 `img` 标签和 `Image` 构造函数的关系
 Bee.tag('%pf%tag', %Com)
 
+%Com.version = '__VERSION__'
 
 module.exports = %Com;
